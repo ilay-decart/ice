@@ -88,7 +88,7 @@ func (s *controllingSelector) nominatePair(pair *CandidatePair) {
 		stun.NewUsername(s.agent.remoteUfrag+":"+s.agent.localUfrag),
 		UseCandidate(),
 		AttrControlling(s.agent.tieBreaker),
-		PriorityAttr(pair.Local.Priority()),
+		PriorityAttr(pair.Local.prflxPriority()),
 		stun.NewShortTermIntegrity(s.agent.remotePwd),
 		stun.Fingerprint,
 	)
@@ -194,7 +194,7 @@ func (s *controllingSelector) PingCandidate(local, remote Candidate) {
 	msg, err := stun.Build(stun.BindingRequest, stun.TransactionID,
 		stun.NewUsername(s.agent.remoteUfrag+":"+s.agent.localUfrag),
 		AttrControlling(s.agent.tieBreaker),
-		PriorityAttr(local.Priority()),
+		PriorityAttr(local.prflxPriority()),
 		stun.NewShortTermIntegrity(s.agent.remotePwd),
 		stun.Fingerprint,
 	)
@@ -341,7 +341,7 @@ func (s *controlledSelector) PingCandidate(local, remote Candidate) {
 	msg, err := stun.Build(stun.BindingRequest, stun.TransactionID,
 		stun.NewUsername(s.agent.remoteUfrag+":"+s.agent.localUfrag),
 		AttrControlled(s.agent.tieBreaker),
-		PriorityAttr(local.Priority()),
+		PriorityAttr(local.prflxPriority()),
 		stun.NewShortTermIntegrity(s.agent.remotePwd),
 		stun.Fingerprint,
 	)

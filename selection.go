@@ -90,7 +90,7 @@ func (s *controllingSelector) nominatePair(pair *CandidatePair) {
 		stun.NewUsername(s.agent.remoteUfrag + ":" + s.agent.localUfrag),
 		UseCandidate(),
 		AttrControlling(s.agent.tieBreaker),
-		PriorityAttr(pair.Local.Priority()),
+		PriorityAttr(pair.Local.prflxPriority()),
 	}
 	attributes = append(attributes,
 		stun.NewShortTermIntegrity(s.agent.remotePwd),
@@ -200,7 +200,7 @@ func (s *controllingSelector) PingCandidate(local, remote Candidate) {
 		stun.TransactionID,
 		stun.NewUsername(s.agent.remoteUfrag + ":" + s.agent.localUfrag),
 		AttrControlling(s.agent.tieBreaker),
-		PriorityAttr(local.Priority()),
+		PriorityAttr(local.prflxPriority()),
 	}
 	attributes = append(attributes,
 		stun.NewShortTermIntegrity(s.agent.remotePwd),
@@ -352,7 +352,7 @@ func (s *controlledSelector) PingCandidate(local, remote Candidate) {
 		stun.TransactionID,
 		stun.NewUsername(s.agent.remoteUfrag + ":" + s.agent.localUfrag),
 		AttrControlled(s.agent.tieBreaker),
-		PriorityAttr(local.Priority()),
+		PriorityAttr(local.prflxPriority()),
 	}
 	attributes = append(attributes,
 		stun.NewShortTermIntegrity(s.agent.remotePwd),
